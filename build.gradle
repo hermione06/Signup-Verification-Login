@@ -39,6 +39,10 @@ dependencies {
 	implementation 'io.jsonwebtoken:jjwt-jackson:0.12.6'
 }
 
+bootRun {
+    mainClass = 'com.example.signupLogin.SignupLoginApplication'  // Main class with @SpringBootApplication
+}
+
 tasks.named('test') {
     useJUnitPlatform()
     testLogging {
