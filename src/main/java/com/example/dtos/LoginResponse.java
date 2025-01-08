@@ -3,13 +3,14 @@ package com.example.dtos;
 import lombok.Getter;
 import lombok.Setter;
 
+@Getter
+@Setter
 public class LoginResponse {
-    @Getter
-    @Setter
     private String token;
-
-    @Getter
-    @Setter
     private long expiresIn;
 
+    public LoginResponse(String token, long expiresIn) {
+        this.token = token;
+        this.expiresIn = expiresIn;
+    }
 }
