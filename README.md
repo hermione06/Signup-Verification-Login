@@ -71,8 +71,10 @@ gradle bootRun
 
 The application will start on `http://localhost:8080` by default.
 
-## API Endpoints
--- Screenshots will be added soon...
+## API Endpoints - Screenshots
+![register](https://github.com/user-attachments/assets/0300aa46-7765-4f91-be20-934d873b9a0c) ![email_code](https://github.com/user-attachments/assets/95235506-56af-421e-981c-558720942fa2) ![verify](https://github.com/user-attachments/assets/242ff7bf-fe40-44c1-9fab-215d0b60cf4c)
+
+![login](https://github.com/user-attachments/assets/baa20967-147a-4960-afd2-67c027fced99)
 
 ## Security Features
 1. **Password Hashing**: BCrypt hashing algorithm ensures secure storage of passwords.
