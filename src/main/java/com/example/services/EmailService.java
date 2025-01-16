@@ -16,6 +16,7 @@ public class EmailService {
         MimeMessage message = emailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message, true);
 
+        helper.setFrom("asiman.ismayilova.2006@mail.ru"); 
         helper.setTo(to);
         helper.setSubject(subject);
         helper.setText(text, true);
