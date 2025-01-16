@@ -37,8 +37,8 @@ This project is a complete Spring Boot application that implements secure signup
 
 ### 1. Clone the Repository
 ```bash
-git clone <https://github.com/hermione06/Signup-Verification-Login.git>
-cd <Signup-Verification-Login>
+git clone https://github.com/hermione06/Signup-Verification-Login.git
+cd Signup-Verification-Login
 ```
 
 ### 2. Configure the Application
