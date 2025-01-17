@@ -3,18 +3,15 @@ package com.example.services;
 import java.time.LocalDateTime;
 import java.util.Optional;
 import java.util.Random;
-
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
 import com.example.dtos.LoginUserDto;
 import com.example.dtos.RegisterUserDto;
 import com.example.dtos.VerifyUserDto;
 import com.example.entities.User;
 import com.example.repositories.UserRepository;
-
 import jakarta.mail.MessagingException;
 
 @Service
@@ -37,13 +34,29 @@ public class AuthenticationService {
     }
 
     public User signup(RegisterUserDto input) {
-        User user = new User(input.getUsername(), input.getEmail(), passwordEncoder.encode(input.getPassword()));
+        // Check if user with entered email exists
+        Optional<User> existingUser = userRepository.findByEmail(input.getEmail());
+        if (existingUser.isPresent()) {
+            throw new IllegalArgumentException("Email is already registered. Please log in or reset your password.");
+        }
+    
+        // Create the user object
+        User user = new User(
+            input.getUsername(),
+            input.getEmail(),
+            passwordEncoder.encode(input.getPassword())
+        );
         user.setVerificationCode(generateVerificationCode());
         user.setVerificationCodeExpiresAt(LocalDateTime.now().plusMinutes(15));
         user.setEnabled(false);
+    
+        // Send verification email
         sendVerificationEmail(user);
+    
+        // Save the user to the database
         return userRepository.save(user);
     }
+    
 
      public User authenticate(LoginUserDto input) {
         User user = userRepository.findByEmail(input.getEmail())
